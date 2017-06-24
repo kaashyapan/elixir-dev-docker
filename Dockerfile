@@ -22,6 +22,7 @@ RUN apt-get -y autoremove && \
     apt-get -y autoclean  && \
     rm -rf /var/lib/apt/lists/* 
 
+EXPOSE 22
 EXPOSE 4000
 
 RUN pg_dropcluster --stop $PG_VERSION main && \
