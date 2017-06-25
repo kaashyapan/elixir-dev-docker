@@ -29,7 +29,7 @@ RUN pg_dropcluster --stop $PG_VERSION main && \
     su postgres -c "psql --command \"ALTER USER postgres WITH PASSWORD 'postgres';\" " && \
     pg_ctlcluster $PG_VERSION main stop  
 
-WORKDIR /home/user
+# WORKDIR /home/user
 
 CMD pg_ctlcluster $PG_VERSION main start && \
     /bin/bash
