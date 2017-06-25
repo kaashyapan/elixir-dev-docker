@@ -3,7 +3,7 @@ FROM elixir
 MAINTAINER sunder.narayanaswamy@gmail.com
 
 ENV HOME /root
-ENV PGDATA /var/lib/postgresql/main
+ENV PGDATA /var/lib/postgresql
 ENV PG_VERSION 9.4
 
 RUN bash -c "curl -sL https://deb.nodesource.com/setup_6.x | bash -"
@@ -11,8 +11,9 @@ RUN bash -c "curl -sL https://deb.nodesource.com/setup_6.x | bash -"
 # Install postgres & node required for Phoenix framework
 RUN apt-get update && apt-get install -y \
     postgresql postgresql-contrib \
-    emacs \
-    nodejs
+    nodejs inotify-tools \
+    emacs
+    
 	
 VOLUME [$HOME, $PGDATA]
 
@@ -32,4 +33,4 @@ WORKDIR /home/user
 
 CMD pg_ctlcluster $PG_VERSION main start && tail -f /dev/null
 
-# docker run -it --rm -p 80:4000 -v $HOME/workspace/elixir:/home/user -v $HOME/postgres/elixir-dev:/var/lib/postgresql sundernarayanaswamy/elixir-dev
+# docker run -it --rm -p 80:4000 -v $HOME/workspace/elixir:/root -v $HOME/workspace/postgres:/var/lib/postgresql sundernarayanaswamy/elixir-dev
