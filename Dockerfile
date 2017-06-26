@@ -30,4 +30,3 @@ WORKDIR /root
 CMD pg_ctlcluster $PG_VERSION main start && \
     /bin/bash
 # tail -f /dev/null
-# docker run -it --rm -p 80:4000 -v $HOME/workspace/elixir:/root -v $HOME/workspace/postgres:/var/lib/postgresql sundernarayanaswamy/elixir-dev-docker
