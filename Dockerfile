@@ -14,9 +14,6 @@ RUN apt-get update && apt-get install -y \
     nodejs inotify-tools \
     emacs
     
-	
-VOLUME [$HOME, $PGDATA]
-
 RUN apt-get -y autoremove && \
     apt-get -y clean  && \
     apt-get -y autoclean  && \
