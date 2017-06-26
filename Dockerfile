@@ -3,7 +3,7 @@ FROM elixir
 MAINTAINER sunder.narayanaswamy@gmail.com
 
 ENV HOME /root
-ENV PGDATA /var/lib/postgresql
+ENV PGDATA /var/lib/postgresql/data
 ENV PG_VERSION 9.4
 
 RUN bash -c "curl -sL https://deb.nodesource.com/setup_6.x | bash -"
