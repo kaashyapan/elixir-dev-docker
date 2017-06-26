@@ -3,7 +3,6 @@ FROM elixir
 MAINTAINER sunder.narayanaswamy@gmail.com
 
 ENV HOME /root
-ENV PGDATA /var/lib/postgresql/data
 ENV PG_VERSION 9.4
 
 RUN bash -c "curl -sL https://deb.nodesource.com/setup_6.x | bash -"
@@ -22,7 +21,7 @@ RUN apt-get -y autoremove && \
 EXPOSE 4000
 
 RUN pg_dropcluster --stop $PG_VERSION main && \
-    pg_createcluster --encoding UTF8 -d $PGDATA --start $PG_VERSION main && \
+    pg_createcluster --encoding UTF8 --start $PG_VERSION main && \
     su postgres -c "psql --command \"ALTER USER postgres WITH PASSWORD 'postgres';\" " && \
     pg_ctlcluster $PG_VERSION main stop  
 
