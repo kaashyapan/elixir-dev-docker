@@ -1,6 +1,7 @@
 # elixir-emacs
-Based on the official elixir containers 
-Adds postgres, node & emacs for phoenix framework
+Based on the official elixir container. 
+Adds postgres, node for phoenix framework
+And emacs.
 
 *Note*
 
