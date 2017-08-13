@@ -8,10 +8,10 @@ ENV PG_VERSION 9.4
 RUN bash -c "curl -sL https://deb.nodesource.com/setup_6.x | bash -"
 
 # Install postgres & node required for Phoenix framework
-RUN apt-get update && apt-get install -y \
+RUN apt-get update && apt-get install -" \
     postgresql postgresql-contrib \
     nodejs inotify-tools \
-    emacs
+    emacs \
     
 RUN apt-get -y autoremove && \
     apt-get -y clean  && \
@@ -26,6 +26,10 @@ RUN pg_dropcluster --stop $PG_VERSION main && \
     pg_ctlcluster $PG_VERSION main stop  
 
 WORKDIR /root
+
+RUN bash -c "wget https://bootstrap.pypa.io/get-pip.py" && \
+    bash -c "python get-pip.py" && \
+    bash -c "pip install --upgrade --user awscli"
 
 CMD pg_ctlcluster $PG_VERSION main start && \
     /bin/bash
