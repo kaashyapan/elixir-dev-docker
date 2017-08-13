@@ -12,6 +12,7 @@ RUN apt-get update && apt-get install -y \
     postgresql postgresql-contrib \
     nodejs inotify-tools \
     emacs \
+    python-pip
     
 RUN apt-get -y autoremove && \
     apt-get -y clean  && \
@@ -27,8 +28,7 @@ RUN pg_dropcluster --stop $PG_VERSION main && \
 
 WORKDIR /root
 
-RUN bash -c "wget https://bootstrap.pypa.io/get-pip.py" && \
-    bash -c "python get-pip.py" && \
+RUN bash -c "pip install --upgrade pip" && \
     bash -c "pip install --upgrade --user awscli"
 
 CMD pg_ctlcluster $PG_VERSION main start && \
