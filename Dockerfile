@@ -22,7 +22,7 @@ EXPOSE 4000
 
 RUN pg_dropcluster --stop $PG_VERSION main && \
     pg_createcluster --encoding UTF8 --start $PG_VERSION main && \
-    su postgres -c "psql --command \"ALTER USER postgres WITH PASSWORD 'postgres';\" " && \
+    su postgres -c 'psql --command \"ALTER USER postgres WITH PASSWORD 'postgres';\" ' && \
     pg_ctlcluster $PG_VERSION main stop  
 
 WORKDIR /root
