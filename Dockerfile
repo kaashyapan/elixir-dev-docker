@@ -8,7 +8,7 @@ ENV PG_VERSION 9.4
 RUN bash -c "curl -sL https://deb.nodesource.com/setup_6.x | bash -"
 
 # Install postgres & node required for Phoenix framework
-RUN apt-get update && apt-get install -" \
+RUN apt-get update && apt-get install -y \
     postgresql postgresql-contrib \
     nodejs inotify-tools \
     emacs \
