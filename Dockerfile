@@ -1,4 +1,4 @@
-FROM elixir
+FROM elixir:slim
 
 MAINTAINER sunder.narayanaswamy@gmail.com
 
@@ -11,8 +11,8 @@ RUN bash -c "curl -sL https://deb.nodesource.com/setup_6.x | bash -"
 RUN apt-get update && apt-get install -y \
     postgresql postgresql-contrib \
     nodejs inotify-tools \
-    emacs \
-    python-pip python-dev build-essential 
+    emacs sudo \
+    python3-pip
     
 RUN apt-get -y autoremove && \
     apt-get -y clean  && \
@@ -28,7 +28,7 @@ RUN pg_dropcluster --stop $PG_VERSION main && \
 
 WORKDIR /root
 
-RUN bash -c "pip install --upgrade pip awscli"
+RUN bash -c "pip3 install --upgrade s3cmd awscli"
 
 CMD pg_ctlcluster $PG_VERSION main start && \
     /bin/bash
