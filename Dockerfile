@@ -1,4 +1,4 @@
-FROM elixir:slim
+FROM elixir
 
 MAINTAINER sunder.narayanaswamy@gmail.com
 
